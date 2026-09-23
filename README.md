@@ -27,3 +27,11 @@
 - 生产实现在 [`Akke-AI/store-workbench`](https://github.com/Akke-AI/store-workbench)：它的 UI 照搬本原型、只把假数据换成真实查询。
   那边 README「和别的仓的关系」一节写了同步方式（clone 本仓 → diff `app/prototype-*.tsx` → 手工合并）
 - 全 org「哪件事归哪个仓」以 [`Akke-AI/Akke`](https://github.com/Akke-AI/Akke) 的 `docs/REPO-MAP.md` 为准
+
+## 仓库协作与自动化
+
+- 合并方式：本仓未开原生 auto-merge、没有 CI workflow，也没有 pr-janitor；PR 由维护者确认后手动 squash 合并
+- 分支保护：`main` 无分支保护，无 required checks
+- 发布：GitHub Pages（legacy 构建，源为 `main` 分支 `/docs`），合进 `main` 即触发重新发布
+- 合并后分支自动删除（仓库设置 `delete_branch_on_merge`）
+- 由维护者本机每周执行 repo-hygiene，清理已合并 / 已关闭 PR 的残留分支
